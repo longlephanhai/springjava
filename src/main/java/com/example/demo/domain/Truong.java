@@ -16,6 +16,7 @@ public class Truong {
   private String tenTruong;
   private String diaChi;
   private String soDT;
+  
   @OneToMany(mappedBy = "truong")
   private List<TotNghiep> totNghieps;
 

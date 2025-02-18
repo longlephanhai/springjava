@@ -55,7 +55,7 @@
           <label for="">Chọn ngành: </label>
           <form:select path="maNganh">
             <c:forEach var="nganh" items="${listNganh}">
-              <form:option value="${nganh.maNgang}">${nganh.tenNganh}</form:option>
+              <form:option value="${nganh.maNganh}">${nganh.tenNganh}</form:option>
             </c:forEach>
           </form:select>
           <br />
