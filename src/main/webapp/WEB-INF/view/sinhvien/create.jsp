@@ -7,60 +7,92 @@
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <title>Tạo mới thông tin</title>
       </head>
 
       <body>
-        hello
-        <form:form action="/create" method="post" modelAttribute="sinhvien">
-          <label for="">Nhập số CMND: </label>
-          <form:input type="text" path="soCMND" />
-          <br />
-          <label for="">Nhập họ và tên: </label>
-          <form:input type="text" path="hoten" />
-          <br />
-          <label for="">Nhập email: </label>
-          <form:input type="email" path="email" />
-          <br />
-          <label for="">Nhập số điện thoại: </label>
-          <form:input type="text" path="soDT" />
-          <br />
-          <label for="">Nhập địa chỉ: </label>
-          <form:input type="text" path="diaChi" />
-          <br />
-          <label for="">Chọn hệ tốt nghiệp: </label>
-          <form:select path="heTN" name="" id="">
-            <form:option value="dai-hoc">Đại học</form:option>
-            <form:option value="cao-dang">Cao đẳng</form:option>
-            <form:option value="trung-cap">Trung cấp</form:option>
-          </form:select>
-          <br/>
-          <label for="">Chọn ngày tốt nghiệp: </label>
-          <form:input type="date" path="ngayTN" />
-          <br />
-          <label for="">Chọn loại tốt nghiệp: </label>
-          <form:select path="loaiTN" name="" id="">
-            <form:option value="gioi">Giỏi</form:option>
-            <form:option value="kha">Khá</form:option>
-            <form:option value="trung-binh">Trung bình</form:option>
-          </form:select>
-          <br />
-          <label for="">Chọn trường: </label>
-          <form:select path="maTruong">
-            <c:forEach var="truong" items="${listTruong}">
-              <form:option value="${truong.maTruong}">${truong.tenTruong}</form:option>
-            </c:forEach>
-          </form:select>
-          <br />
-          <label for="">Chọn ngành: </label>
-          <form:select path="maNganh">
-            <c:forEach var="nganh" items="${listNganh}">
-              <form:option value="${nganh.maNganh}">${nganh.tenNganh}</form:option>
-            </c:forEach>
-          </form:select>
-          <br />
-          <input type="submit" value="Submit">
-        </form:form>
+        <div class="container mt-4">
+          <div class="row justify-content-center">
+            <form:form action="/create" method="post" modelAttribute="sinhvien">
+              <div class="mb-3">
+                <label for="" class="form-label">Nhập số CMND: </label>
+                <form:input type="text" path="soCMND" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Nhập họ và tên: </label>
+                <form:input type="text" path="hoten" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Nhập email: </label>
+                <form:input type="email" path="email" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Nhập số điện thoại: </label>
+                <form:input type="text" path="soDT" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Nhập địa chỉ: </label>
+                <form:input type="text" path="diaChi" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Chọn hệ tốt nghiệp: </label>
+                <form:select path="heTN" name="" id="" class="form-select">
+                  <form:option value="dai-hoc">Đại học</form:option>
+                  <form:option value="cao-dang">Cao đẳng</form:option>
+                  <form:option value="trung-cap">Trung cấp</form:option>
+                </form:select>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="" class="form-label">Chọn ngày tốt nghiệp: </label>
+                <form:input type="date" path="ngayTN" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Chọn loại tốt nghiệp: </label>
+                <form:select path="loaiTN" name="" id="" class="form-select">
+                  <form:option value="gioi">Giỏi</form:option>
+                  <form:option value="kha">Khá</form:option>
+                  <form:option value="trung-binh">Trung bình</form:option>
+                </form:select>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Chọn trường: </label>
+                <form:select path="maTruong" class="form-select">
+                  <c:forEach var="truong" items="${listTruong}">
+                    <form:option value="${truong.maTruong}">${truong.tenTruong}</form:option>
+                  </c:forEach>
+                </form:select>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Chọn ngành: </label>
+                <form:select path="maNganh" class="form-select">
+                  <c:forEach var="nganh" items="${listNganh}">
+                    <form:option value="${nganh.maNganh}">${nganh.tenNganh}</form:option>
+                  </c:forEach>
+                </form:select>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form:form>
+          </div>
+
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
       </body>
 
       </html>
