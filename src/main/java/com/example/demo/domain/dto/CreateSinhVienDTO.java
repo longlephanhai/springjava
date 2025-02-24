@@ -4,13 +4,16 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateSinhVienDTO {
-    @NotBlank(message = "Số CMND không được để trống")
+    @NotEmpty(message = "Số CMND không được để trống")
     private String soCMND;
     private String hoten;
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "Email không hợp lệ")
     private String email;
     private String soDT;
     private String diaChi;
@@ -19,9 +22,9 @@ public class CreateSinhVienDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate ngayTN;
     private String loaiTN;
-    @NotBlank(message = "Mã trường không được để trống")
+    @NotEmpty(message = "Mã trường không được để trống")
     private String maTruong;
-    @NotBlank(message = "Mã ngành không được để trống")
+    @NotEmpty(message = "Mã ngành không được để trống")
     private String maNganh;
 
     public String getSoCMND() {

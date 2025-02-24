@@ -16,10 +16,28 @@
         <div class="container mt-4">
           <div class="row justify-content-center">
             <form:form action="/create" method="post" modelAttribute="sinhvien">
+              <c:set var="errorCMND">
+                <form:errors path="soCMND" cssClass="invalid-feedback" />
+              </c:set>
+              <c:set var="errorEmail">
+                <form:errors path="email" cssClass="invalid-feedback" />
+              </c:set>
+              <c:set var="errormaTruong">
+                <form:errors path="maTruong" cssClass="invalid-feedback" />
+              </c:set>
+              <c:set var="errormaNganh">
+                <form:errors path="maNganh" cssClass="invalid-feedback" />
+              </c:set>
+              <c:set var="errorngayTN">
+                <form:errors path="ngayTN" cssClass="invalid-feedback" />
+              </c:set>
               <div class="mb-3">
                 <label for="" class="form-label">Nhập số CMND: </label>
-                <form:input type="text" path="soCMND" class="form-control" />
+                <form:input type="text" path="soCMND"
+                  class="form-control ${not empty errorCMND ? 'is-invalid' : '' }" />
+                ${errorCMND}
               </div>
+
               <div class="mb-3">
                 <label for="" class="form-label">Nhập họ và tên: </label>
                 <form:input type="text" path="hoten" class="form-control" />
@@ -27,7 +45,11 @@
 
               <div class="mb-3">
                 <label for="" class="form-label">Nhập email: </label>
-                <form:input type="email" path="email" class="form-control" />
+                <form:input type="email" path="email"
+                  class="form-control ${not empty errorEmail ? 'is-invalid' : '' }" />
+                <c:if test="${not empty errorEmail}">
+                  ${errorEmail}
+                </c:if>
               </div>
 
               <div class="mb-3">
@@ -49,10 +71,11 @@
                 </form:select>
               </div>
 
-
               <div class="mb-3">
                 <label for="" class="form-label">Chọn ngày tốt nghiệp: </label>
-                <form:input type="date" path="ngayTN" class="form-control" />
+                <form:input type="date" path="ngayTN"
+                  class="form-control ${not empty errorngayTN ? 'is-invalid' : '' }" />
+                ${errorngayTN}
               </div>
 
               <div class="mb-3">
@@ -65,20 +88,24 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Chọn trường: </label>
-                <form:select path="maTruong" class="form-select">
+                <form:select path="maTruong" class="form-select ${not empty errormaTruong ? 'is-invalid' : '' }">
+                  <form:option value="">Chọn trường tốt nghiệp</form:option>
                   <c:forEach var="truong" items="${listTruong}">
                     <form:option value="${truong.maTruong}">${truong.tenTruong}</form:option>
                   </c:forEach>
                 </form:select>
+                ${errormaTruong}
               </div>
 
               <div class="mb-3">
                 <label for="" class="form-label">Chọn ngành: </label>
-                <form:select path="maNganh" class="form-select">
+                <form:select path="maNganh" class="form-select ${not empty errormaNganh ? 'is-invalid' : '' }">
+                  <form:option value="">Chọn ngành tốt nghiệp</form:option>
                   <c:forEach var="nganh" items="${listNganh}">
                     <form:option value="${nganh.maNganh}">${nganh.tenNganh}</form:option>
                   </c:forEach>
                 </form:select>
+                ${errormaNganh}
               </div>
 
               <div class="d-grid">

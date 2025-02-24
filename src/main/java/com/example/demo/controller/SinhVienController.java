@@ -31,7 +31,6 @@ public class SinhVienController {
   private final NganhService nganhService;
   private final TotNghiepService totNghiepService;
   private final CongViecService congViecService;
- 
 
   public SinhVienController(SinhVienService sinhVienService, TruongService truongService, NganhService nganhService,
       TotNghiepService totNghiepService, CongViecService congViecService) {
@@ -54,13 +53,17 @@ public class SinhVienController {
 
   @PostMapping("/create")
   public String createSinhVien(@ModelAttribute("sinhvien") @Valid CreateSinhVienDTO dto,
-      BindingResult newUserBindingResult) {
+      BindingResult newUserBindingResult, Model model) {
     List<FieldError> errors = newUserBindingResult.getFieldErrors();
     for (FieldError error : errors) {
       System.out.println(">>>>error" + error.getField() + " - " + error.getDefaultMessage());
     }
     if (newUserBindingResult.hasErrors()) {
-      return "index";
+      List<Truong> listTruong = this.truongService.listTruong();
+      List<Nganh> listNganh = this.nganhService.listNganh();
+      model.addAttribute("listTruong", listTruong);
+      model.addAttribute("listNganh", listNganh);
+      return "sinhvien/create";
     }
     this.sinhVienService.createSinhVien(dto);
     return "redirect:/create";
@@ -89,9 +92,9 @@ public class SinhVienController {
   public String postCMND2(@ModelAttribute("sinhVien") CreateSinhVienDTO dto, Model model) {
     SinhVien sinhvien = this.sinhVienService.getSinhVien(dto.getSoCMND());
     model.addAttribute("sinhvien", sinhvien);
-    List<TotNghiep> totNghieps =this.totNghiepService.getTotNghiep(sinhvien);
+    List<TotNghiep> totNghieps = this.totNghiepService.getTotNghiep(sinhvien);
     model.addAttribute("totNghieps", totNghieps);
-    List<CongViec> congViecs =this.congViecService.listCongViec(sinhvien);
+    List<CongViec> congViecs = this.congViecService.listCongViec(sinhvien);
     model.addAttribute("listMaNganhCTY", congViecs);
     return "sinhvien/find2";
   }
